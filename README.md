@@ -263,8 +263,8 @@ Distributed under the MIT License. See LICENSE for more information.
 
 ## 📞 Contact
 
-[Hassan Safari] - @global-fxs - info@global-fxs.com
+[Hassan Safari] - Telegram : @safari_trader - info@global-fxs.com
 
-Project Link: https://github.com/yourusername/lightweight-chart-plugin
+Project Link: https://github.com/safaritrader/lightweight-chart-plugin
 
 
