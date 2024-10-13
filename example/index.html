@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LCP</title>
+    <style>
+        #chartContainer {
+            height: 500px;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1000px;
+        }
+        #chart{
+            height: 500px;
+            overflow: hidden;
+        }
+    </style>
+    <script src="https://unpkg.com/lightweight-charts@4.2.0/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+<body>
+<div id="chartContainer">
+    <div id="chart" style=""></div>
+    <canvas id="overlayCanvas" style="position: absolute; top: 0; left: 0; pointer-events: none;"></canvas>
+    <canvas id="overlayCanvasVP" style="position: absolute; top: 0; left: 0; pointer-events: none;"></canvas>
+</div>
+<script src="js/lightweight-chart-plugin.js"></script>
+<script>
+    const chart = LightweightCharts.createChart(document.getElementById('chart'), {
+
+        layout: {
+            textColor: 'rgba(255,255,255,0.9)',
+            background: { type: 'solid', color: 'transparent' },
+        },
+        grid: {
+            vertLines: {
+                color: 'rgba(197, 203, 206,0.1)',
+            },
+            horzLines: {
+                color: 'rgba(197, 203, 206, 0.1)',
+            },
+        },
+        crosshair: {
+            mode: LightweightCharts.CrosshairMode.Normal,
+        },
+        priceScale: {
+            borderColor: 'rgba(197, 203, 206, 0.8)',
+        },
+        timeScale: {
+            borderColor: 'rgba(197, 203, 206, 0.8)',
+            timeVisible: true,
+            secondsVisible:false,
+        },
+    });
+    const series = chart.addCandlestickSeries({
+        upColor: 'rgb(8,152,129)',
+        downColor: '#f03645',
+        borderDownColor: '#f03645',
+        borderUpColor: 'rgb(8,152,129)',
+        wickDownColor: '#f03645',
+        wickUpColor: 'rgb(8,152,129)',
+        priceLineVisible: false,
+        lastValueVisible: false,
+        zIndex: 10
+    });
+    let lcp = new LighweightChartPlugin({
+            chartContainerId: 'chartContainer',
+            chartDivId: 'chart',
+            overlayCanvasId: 'overlayCanvas',
+            series: series,
+            chart: chart,
+            background: {
+                zIndex : -3,
+                position : 'absolute',
+                inset : '0px',
+                opacity : '1',
+                backgroundSize : 'cover',
+                backgroundColor : '#131723'
+            },
+            tooltip:{
+                enabled:true,
+                position : 'absolute',
+                padding : '5px',
+                backgroundColor : 'rgb(19,23,35)',
+                color : '#fff',
+                borderRadius : '4px',
+                display : 'none',
+                transform : 'translate(-50%, -100%)',
+                zIndex : 9999999,
+                textAlign : 'center',
+            },
+            volumeprofile:{
+                enabled : true,
+                volumeProfileId:'overlayCanvasVP',
+                bins:40,
+                width_percentage_vp:10,
+                textColor:'white',
+                color:'rgba(231,156,250,0.1)',
+            }
+        }
+    )
+    series.setData([
+        { time: lcp.set_date('2023-04-13 10:00'), open: 100, high:101,low:99,close:101 },
+        { time: lcp.set_date('2023-04-13 10:01'), open: 101, high:102,low:100,close:101 },
+        { time: lcp.set_date('2023-04-13 10:02'), open: 101, high:105,low:100,close:104 },
+        { time: lcp.set_date('2023-04-13 10:03'), open: 104, high:105,low:103,close:103},
+        { time: lcp.set_date('2023-04-13 10:04'), open: 103, high:104,low:102,close:103 },
+        { time: lcp.set_date('2023-04-13 10:05'), open: 103, high:103,low:99,close:100 },
+        { time: lcp.set_date('2023-04-13 10:06'), open: 100, high:101,low:99,close:101 },
+        { time: lcp.set_date('2023-04-13 10:07'), open: 101, high:101,low:90,close:95 },
+        { time: lcp.set_date('2023-04-13 10:08'), open: 95, high:98,low:94,close:97 },
+        { time: lcp.set_date('2023-04-13 10:09'), open: 97, high:98,low:90,close:100 },
+        { time: lcp.set_date('2023-04-13 10:10'), open: 100, high:101,low:99,close:101 },
+        { time: lcp.set_date('2023-04-13 10:11'), open: 101, high:101,low:90,close:95 },
+        { time: lcp.set_date('2023-04-13 10:12'), open: 95, high:98,low:94,close:97 },
+        { time: lcp.set_date('2023-04-13 10:13'), open: 97, high:102,low:95,close:101 },
+        { time: lcp.set_date('2023-04-13 10:14'), open: 100, high:101,low:99,close:101 },
+        { time: lcp.set_date('2023-04-13 10:15'), open: 101, high:102,low:100,close:101 },
+        { time: lcp.set_date('2023-04-13 10:16'), open: 101, high:105,low:100,close:104 },
+        { time: lcp.set_date('2023-04-13 10:17'), open: 104, high:105,low:103,close:103},
+        { time: lcp.set_date('2023-04-13 10:18'), open: 103, high:104,low:102,close:103 },
+        { time: lcp.set_date('2023-04-13 10:19'), open: 103, high:103,low:99,close:100 },
+        { time: lcp.set_date('2023-04-13 10:20'), open: 100, high:101,low:99,close:101 },
+        { time: lcp.set_date('2023-04-13 10:21'), open: 101, high:101,low:90,close:95 },
+        { time: lcp.set_date('2023-04-13 10:22'), open: 95, high:98,low:94,close:97 },
+        { time: lcp.set_date('2023-04-13 10:23'), open: 97, high:98,low:90,close:100 },
+        { time: lcp.set_date('2023-04-13 10:24'), open: 100, high:101,low:99,close:101 },
+        { time: lcp.set_date('2023-04-13 10:25'), open: 101, high:101,low:90,close:95 },
+        { time: lcp.set_date('2023-04-13 10:26'), open: 95, high:98,low:94,close:97 },
+        { time: lcp.set_date('2023-04-13 10:27'), open: 97, high:102,low:95,close:101 },
+    ]);
+    lcp.addRectangle(time1='2023-04-13 10:02' ,
+        price1=103, time2='2023-04-13 14:32',
+        price2=105,
+        color='rgba(255,1,73,0.70)',
+        useGradient= true,
+        tooltipText = 'Sell Label Not Triggered',
+        triggered = false);
+    lcp.addRectangle(time1='2023-04-13 10:07' ,
+        price1=90, time2='2023-04-13 10:21',
+        price2=92,
+        color='rgba(24,255,14,0.5)',
+        useGradient= true,
+        tooltipText = 'Buy Label Triggered',
+        triggered = true);
+    lcp.addCircle(time = '2023-04-13 10:03', price = 1,color= 'rgba(255,2,2,0.5)', useGradient= true, tooltipText ='Circle Sell location_ High',location_ ='high');
+    lcp.addCircle(time = '2023-04-13 10:07', price = 1,color= 'rgba(88,245,0,0.5)', useGradient= true, tooltipText ='Circle Sell location_ Low',location_ ='low');
+    lcp.addSession(time='2023-04-13 10:24', color= 'rgba(8,255,178,0.27)' , label='Test');
+    lcp.addSession(time='2023-04-13 10:25', color= 'rgba(8,255,178,0.27)' , label='Test');
+    lcp.addSession(time='2023-04-13 10:26', color= 'rgba(8,255,178,0.27)' , label='Test');
+    let volume_data = [
+        { time: '2023-04-13 10:00', price: 100, volume:5 },
+        { time: '2023-04-13 10:01', price: 101, volume:5 },
+        { time: '2023-04-13 10:02', price: 101, volume:1 },
+        { time: '2023-04-13 10:03', price: 104, volume:3},
+        { time: '2023-04-13 10:04', price: 103, volume:2 },
+        { time: '2023-04-13 10:05', price: 103, volume:2 },
+        { time: '2023-04-13 10:06', price: 100, volume:1 },
+        { time: '2023-04-13 10:07', price: 101, volume:1 },
+        { time: '2023-04-13 10:08', price: 95, volume:1 },
+        { time: '2023-04-13 10:09', price: 97, volume:5 },
+        { time: '2023-04-13 10:10', price: 100, volume:5 },
+        { time: '2023-04-13 10:11', price: 101, volume:1 },
+        { time: '2023-04-13 10:12', price: 95, volume:10 },
+        { time: '2023-04-13 10:13', price: 97, volume:3 },
+    ];
+    volume_data.forEach(vol =>{
+        lcp.addVolume(vol.time,vol.price,vol.volume)
+    })
+    chart.timeScale().fitContent();
+    chart.timeScale().applyOptions({
+        minBarSpacing: 0.001,
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "lightweight-chart-plugin",
+  "version": "1.0.0",
+  "main": "dist/lightweight-chart-plugin.js",
+  "description": "TradingView Lightweight Chart Plugin",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/safaritrader/lightweight-chart-plugin.git"
+  },
+  "keywords": [
+    "Tradingview",
+    "Lightweight",
+    "Chart",
+    "Plugin"
+  ],
+  "author": "Hassan Safari",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/safaritrader/lightweight-chart-plugin/issues"
+  },
+  "homepage": "https://github.com/safaritrader/lightweight-chart-plugin#readme"
+}
