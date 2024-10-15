@@ -250,6 +250,9 @@ git push origin feature/AmazingFeature
 ---
 
 ## 📰 Feautres To Add
+Upcoming until next Month:
+- Found a way to run each shape drawing in parallel (for each draw create a hidden div and add resizeObserver then resize width of all of div in lightweight chart subscribe then call the functions) this will fix volume profile and other shapes bug in large dataset
+-----------------
 - Custom Price Line (deletable , hover's)
 - Price Alert (Settings : Cross , Timer)
 - Custom Trend Line (with Alert)
